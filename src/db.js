@@ -2,9 +2,15 @@ import mongoose from "mongoose"
 
 export const connectDB = async () => {
     try{
-        await mongoose.connect('mongodb+srv://avrborges_db_user:708v71Nad1uh6MAP@designdb.w9amtyg.mongodb.net/?retryWrites=true&w=majority&appName=DesignDB')
+        await mongoose.connect(process.env.MONGODB_URI, {
+            
+            //useNewUrlParser: true,
+            //useUnifiedTopology: true,
+
+        })
         console.log(">>>> DB conectado <<<<<")
     } catch(error) {
-        console.error(error)
+        console.error("Error al conectarse a la base de datos",error);
+        process.exit(1);
     }
 }
