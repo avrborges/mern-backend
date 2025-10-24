@@ -10,6 +10,6 @@ const app = express();
 app.use(morgan("dev"))
 app.use(express.json())
 
-app.use(authRoutes);
+app.use('/api/auth',authRoutes);
 
 export default app;
