@@ -84,4 +84,17 @@ export const logout = (req, res) => {
   res.status(200).json({
     mensaje: 'Usuario deslogueado exitosamente'
   });
-}
+};
+
+export const profile = async (req, res) => {
+  const usuarioEncontrado = await Usuario.findById(req.usuario.id)
+
+  if (!usuarioEncontrado) return res.status(404).json({ mensaje: 'Usuario no encontrado' });  
+
+  return res.status(200).json({
+    id: usuarioEncontrado._id,
+    nombre: usuarioEncontrado.nombre,
+    correo: usuarioEncontrado.correo,
+    rol: usuarioEncontrado.rol,
+    creadoEn: usuarioEncontrado.creadoEn
+  })}
